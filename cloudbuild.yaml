@@ -1,7 +1,4 @@
 steps:
- - name: gcr.io/cloud-builders/gcloud
-   entrypoint: 'bash'
-   args: [ '-c', "gcloud secrets versions access latest --secret=weather-api-key --format='get(payload.data)' | tr '_-' '/+' | base64 -d > api_key.txt" ]
  # Build the container image
  - name: 'gcr.io/cloud-builders/docker'
    args: ['build', '-t', 'gcr.io/enigma4-290909/weather-api:$COMMIT_SHA', '.']

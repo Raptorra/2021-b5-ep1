@@ -3,14 +3,17 @@ import os
 import pytz
 import requests
 import math
-from google.cloud import secretmanager
+
 
 API_KEY = ""
 
 if API_KEY is None or API_KEY == "":
-    PROJECT_ID = 'enigma4-290909'
-    secrets = secretmanager.SecretManagerServiceClient()
-    API_KEY = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/weather-api-key/versions/1").payload.data.decode("utf-8")
+    from google.cloud import secretmanager_v1
+    PROJECT_ID = '675857481503'
+    secret_name = 'weather-api-key'
+    secrets = secretmanager_v1.SecretManagerServiceClient()
+    secret_version_name = f'projects/{PROJECT_ID}/secrets/{secret_name}/versions/latest'
+    API_KEY = secrets.access_secret_version(name=secret_version_name).payload.data.decode("utf-8")
 
 API_URL = ('http://api.openweathermap.org/data/2.5/weather?q={}&mode=json&units=metric&appid={}')
 

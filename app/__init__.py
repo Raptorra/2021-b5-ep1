@@ -3,7 +3,7 @@ import os
 from flask import Flask, jsonify
 from pprint import pprint as pp
 from flask import Flask, flash, redirect, render_template, request, url_for
-from weather import query_api
+from app.weather import query_api
 
 app = Flask(__name__)
 

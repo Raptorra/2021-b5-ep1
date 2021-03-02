@@ -10,7 +10,7 @@ API_KEY = ""
 if API_KEY is None or API_KEY == "":
     PROJECT_ID = 'enigma4-290909'
     secrets = secretmanager.SecretManagerServiceClient()
-    API_KEY = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/weather-api-key/versions/latest").payload.data.decode("utf-8")
+    API_KEY = secrets.access_secret_version("projects/"+PROJECT_ID+"/secrets/weather-api-key/versions/1").payload.data.decode("utf-8")
 
 API_URL = ('http://api.openweathermap.org/data/2.5/weather?q={}&mode=json&units=metric&appid={}')
 

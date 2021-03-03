@@ -4,10 +4,12 @@ import pytz
 import requests
 import math
 
-
 API_KEY = ""
 
-if API_KEY is None or API_KEY == "":
+try:
+    import app.api_key
+    API_KEY = app.api_key.value
+except BaseException as e:
     from google.cloud import secretmanager_v1
     PROJECT_ID = '675857481503'
     secret_name = 'weather-api-key'

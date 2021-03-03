@@ -9,32 +9,22 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('weather.html', data=
-    [
-        {'name': 'Toronto'},
-        {'name': 'Montreal'},
-        {'name': 'Calgary'},
-        {'name': 'Ottawa'},
-        {'name': 'Edmonton'},
-        {'name': 'Mississauga'},
-        {'name': 'Winnipeg'},
-        {'name': 'Vancouver'},
-        {'name': 'Brampton'},
-        {'name': 'Quebec'}
-    ])
+    return render_template('weather.html', data=[])
 
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     data = []
     error = None
-    select = request.form.get('comp_select')
+    select = request.form.get('search_country')
     resp = query_api(select)
     pp(resp)
     if resp:
         data.append(resp)
-    if len(data) != 2:
-        error = 'Bad Response from Weather API'
+        pp(len(data))
+    if "message" in data[0]:
+        error = data[0]["message"]
+        return render_template('error.html', data=data, context={"error":error})
     return render_template('result.html', data=data, error=error)
 
 

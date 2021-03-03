@@ -1,10 +1,4 @@
-from datetime import datetime
-import os
-import pytz
 import requests
-import math
-
-API_KEY = ""
 
 try:
     import app.api_key

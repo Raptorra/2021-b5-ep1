@@ -6,4 +6,7 @@
     <h1>Weather</h1>
     <h1>{{ d['name'] }}, {{ d['sys']['country'] }}</h1>
     <h1>{{ d['main']['temp']|round|int}} °C</h1>{% endfor %}
+    <form action="{{ url_for('index') }}">
+         <button type="submit">Nouvelle recherche</button>
+    </form>
 </div>

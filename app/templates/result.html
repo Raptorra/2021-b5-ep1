@@ -5,7 +5,10 @@
         src="{{ my_string }}" class="svg" fill="white" height="100" vertical-align="middle" width="100"></h1>
     <h1>Weather</h1>
     <h1>{{ d['name'] }}, {{ d['sys']['country'] }}</h1>
-    <h1>{{ d['main']['temp']|round|int}} °C</h1>{% endfor %}
+    <h1>{{ d['main']['temp']|round|int}} °C</h1>
+    <h1>Humidity {{ d['main']['humidity'] }}%</h1>
+    <h1>Wind {{ d['wind']['speed'] |round|int }} m/s</h1>
+    {% endfor %}
     <form action="{{ url_for('index') }}">
          <button type="submit">Nouvelle recherche</button>
     </form>
